@@ -1,40 +1,35 @@
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
-import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
         // fazer uma conexão HTTP e buscar os filmes
-        String url = "https://alura-filmes.herokuapp.com/conteudos";
-        URI address = URI.create(url);
-        var client = HttpClient.newHttpClient(); //criação do cliente
-        var request = HttpRequest.newBuilder(address).GET().build();
-        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-        String body = response.body();
+        
+        //String url = "https://alura-filmes.herokuapp.com/conteudos";
+        //ContentExtractor extractor = new ImdbContentExtractor();
 
-        // extrair => título, poster, classificação
-        var parser = new JsonParser();
-        List<Map<String, String>> listMovies = parser.parse(body);    
+        String url = "https://api.mocki.io/v2/549a5d8b/NASA-APOD";
+        ContentExtractor extractor = new NasaContentExtractor();
+
+        var http = new ClientHttp();
+        String json = http.searchData(url);   
 
         // exibir e manipular os dados 
+        List<Content> contents = extractor.extractContents(json);
+
         var generate = new CreateStickers();
-        for (Map<String,String> movie : listMovies) {
 
-            String urlImage = movie.get("image");
-            String title = movie.get("title");
+        for (int i = 0; i < 3; i++) {
 
-            InputStream inputStream = new URL(urlImage).openStream();
-            String fileName = title + ".png";
+            Content content = contents.get(i);
+
+            InputStream inputStream = new URL(content.getUrlImage()).openStream();
+            String fileName = content.getTitle() + ".png";
 
             generate.create(inputStream, fileName);
 
-            System.out.println(title);
+            System.out.println("\u001b[34mTítulo: " + content.getTitle());
             System.out.println();
         }
     }
