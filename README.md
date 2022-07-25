@@ -25,3 +25,23 @@
 - Refatoração dos códigos desenvolvidos nas aulas anteriores
 - Criação de interface e classes, criando um código capaz de acessar diferentes APIs
 - Uso de API da NASA
+
+## Aula 4
+
+- Criação de uma API 
+  - Tema: Linguagens de Programação
+    - Ranking (Fictício)
+    - Title
+    - Image
+      - (Créditos) Repositório das imagens: https://github.com/abrahamcalf/programming-languages-logos
+- Uso do Framework Spring
+  - Dependência: Spring Web
+- Banco de dados mongoDB
+- Postman
+- Repositório da API: https://github.com/lucasBatistaa/apiLanguages 
+
+## Aula 5
+
+- Compilação do projeto da API
+- URL de acesso para a API, usando a plataforma Heroku
+- Endpoint: https://api-languages.herokuapp.com/linguagens
