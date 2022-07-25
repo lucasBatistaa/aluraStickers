@@ -30,9 +30,7 @@
 
 - Criação de uma API 
   - Tema: Linguagens de Programação
-    - Ranking (Fictício)
-    - Title
-    - Image
+    - Ranking (Fictício), Title e Image
       - (Créditos) Repositório das imagens: https://github.com/abrahamcalf/programming-languages-logos
 - Uso do Framework Spring
   - Dependência: Spring Web
